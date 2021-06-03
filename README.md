@@ -1,7 +1,7 @@
 # Nexteer
-_The Purpose:
-   - This web application is created to make the communication easy between the logistic team and the production team in the nexteer company./n
-_Technologies used: 
-  - Python-Flask (Backend) 
-  - Html CSS Js (Frontend)
+#### The Purpose:
+   - This web application is created to make the communication easy between the Logistic team and the Production team in the nexteer company.
+#### Technologies used: 
+  - Flask (Backend) 
+  - Html , CSS , JavaScript (Frontend)
   - Mysql 
