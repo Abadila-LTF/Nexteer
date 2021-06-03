@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/bootstrap.min.css') }}">
+    <title>Logistic</title>
+    <link rel = "icon" href = "{{ url_for('static', filename='assets/iconn.jpg') }}" type = "image/x-icon">
+</head>
+<body>
+    <header class="bg-light">
+        <div class="container">
+            <nav class="navbar navbar-light">
+                <a class="navbar-brand" href="/public/index.html">
+                    <img src="{{ url_for('static', filename='assets/logo.png') }}" alt="bootstrap"  height="60" class="d-inline-block align-text-top">
+                </a>
+                <div class="d-flex align-items-center justify-content-between">
+                    <p class="fw-bold m-0 p-0 mx-5">{{name}}</p>
+                    <a href ="{{ url_for('logout') }}" class="btn btn-danger" type="submit">Logout</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <h1 class="my-5" style = "font-family:'Century Gothic', CenturyGothic, AppleGothic, sans-serif;"> Logistic Dashboard</h1>
+
+        <div class="p-3 rounded shadow my-5">
+            <p class="h3 mb-3">Online Chefs</p>
+            <table class="table" id="onlineTable">
+                <thead>
+                  <tr>   
+                    <th scope="col">Line</th>
+                    <th scope="col">Zone</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Reference</th>
+                  </tr>
+                </thead>
+                <tbody>
+                {% if currentusers : %}
+                    {% for i in currentusers : %}
+                    <tr> 
+                        <td>{{i[0]}}</td>
+                        <td>{{i[1]}}</td>
+                        <td>{{i[2]}}</td>
+                        <td>{{i[3]}}</td>
+                    </tr>
+                    {% endfor %}
+                {% endif %}
+
+                </tbody>
+            </table>
+        </div>
+
+        <div class="p-3 rounded shadow my-5">
+            <p class="h3 mb-3">History</p>
+            <table class="table" id="historyTable">
+                <thead>
+                  <tr>
+                    <th scope="col">Line</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Old Reference</th>
+                    <th scope="col">New Reference</th>
+                    <th scope="col">Date</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for i in history : %}
+                        <tr>
+                        <td>{{i[0]}}</td>
+                        <td>{{i[1]}}</td> 
+                        <td>{{i[2]}}</td>
+                        <td>{{i[3]}}</td>
+                        <td>{{i[4]}}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        
+    </div>
+
+    <script src="/public/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/bootstrap.min.css') }}">
+    <title> Production</title>
+    <link rel = "icon" href = "{{ url_for('static', filename='assets/iconn.jpg') }}" type = "image/x-icon">
+</head>
+<body>
+    <header class="bg-light">
+        <div class="container">
+            <nav class="navbar navbar-light">
+                <a class="navbar-brand" href="/public/index.html">
+                    <img src="{{ url_for('static', filename='assets/logo.png') }}" alt="bootstrap"  height="60" class="d-inline-block align-text-top">
+            
+                </a>
+
+                <div class="d-flex align-items-center justify-content-between">
+                    <p class="fw-bold m-0 p-0 mx-5">{{name}}</p>
+      
+    
+                    <a href ="{{url_for('logout')}}"class="btn btn-danger" type="submit">Logout</a>
+
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <h1 class="my-5" style = "font-family:'Century Gothic', CenturyGothic, AppleGothic, sans-serif;"><strong>Production</strong></h1>
+
+        <p><span class="fw-bold">Line : </span> {{line}}</p>
+        <p><span class="fw-bold">Zone : </span> {{zone}}</p>
+        <p class="p-2 rounded bg-warning"><span class="fw-bold mx-5">Current Reference  : </span> {% if ref :%}{{ref}}{%endif%} </p>
+{% if not abadila : %}
+<br>
+<br>
+        <p><strong>Choose Reference:</strong></p>
+        
+        <form method="POST" action="{{ url_for('line') }}" class="d-flex align-items-center justify-content-between w-100">
+            {{ form_change.hidden_tag() }}
+            <div class="m-1 d-flex w-75" >
+            
+
+            {{ form.id.label }} {{ form.id(size=20, class="form-control",placeholder="Enter Reference here")  }}
+            
+            </div>
+            {{ form.submit(class="m-1 btn btn-outline-danger w-25") }}
+        </form>
+{% endif %}
+{% if abadila : %}
+<br>
+<br>
+<br>
+<p><strong>Change Reference:</strong></p>
+        <form method="POST" action="{{ url_for('change_ref') }}" class="d-flex align-items-center justify-content-between w-100">
+
+            {{ form_change.hidden_tag() }}
+            <div class="m-1 d-flex w-75">
+            
+            {{ form_change.id.label }} {{ form.id(size=20,class="form-control",placeholder="Enter The New Reference here")   }}
+            
+            </div>
+            {{ form_change.submit(class="m-1 btn btn-outline-dark w-25") }}
+        </form>
+{% endif %}
+
+{% if wrong_ref : %}
+        <div class="my-3 alert alert-warning alert-dismissible fade show" role="alert">
+            Choosed reference does not exist 
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+{% endif %}
+</div>
+    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+</body>
+</html>
